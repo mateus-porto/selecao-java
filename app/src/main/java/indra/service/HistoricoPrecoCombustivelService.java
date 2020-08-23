@@ -1,12 +1,10 @@
 package indra.service;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -95,6 +93,7 @@ public class HistoricoPrecoCombustivelService {
         log.debug("Request to delete HistoricoPrecoCombustivel : {}", id);
         historicoPrecoCombustivelRepository.deleteById(id);
     }
+    
     @Async
     @Transactional
     public void importaCsv() {
@@ -103,11 +102,12 @@ public class HistoricoPrecoCombustivelService {
 			BufferedReader br= new BufferedReader(new InputStreamReader (HistoricoPrecoCombustivelService.class.getResourceAsStream("/csvIndra.csv")));
 			
 			List<HistoricoPrecoCombustivel> historicoPrecoCombustivel = new LinkedList<HistoricoPrecoCombustivel>();
-			System.out.println("comecou");
 			while((line=br.readLine())!=null) {
 				
 				String [] data=line.split(";");
 				
+				 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				 
 				HistoricoPrecoCombustivel csvImportado = new HistoricoPrecoCombustivel();
 				csvImportado.setRegiaoSigla(data[0]);
 				csvImportado.setEstadoSigla(data[1]);
@@ -115,32 +115,35 @@ public class HistoricoPrecoCombustivelService {
 				csvImportado.setRevenda(data[3]);
 				csvImportado.setCnpj(data[4]);
 				csvImportado.setProduto(data[5]);
+				converteDataColetada(data, formatter, csvImportado);
+				converteValorVenda(data,csvImportado);
+				converteValorCompra(data,csvImportado);
 				csvImportado.setUnidade(data[9]);
 				csvImportado.setBandeira(data[10]);
 				historicoPrecoCombustivel.add(csvImportado);	
 			}
 			historicoPrecoCombustivelRepository.saveAll(historicoPrecoCombustivel);
-			System.out.println("terminou");
 		} catch (IOException e) {
 					e.printStackTrace();
 		}
     }
 
-	private void converteDataColetada(String[] data, HistoricoPrecoCombustivel csvImportado) {
+	private void converteDataColetada(String[] data, DateTimeFormatter formatter,
+			HistoricoPrecoCombustivel csvImportado) {
 		if(!data[6].isEmpty() && data[6] != null) {
-			csvImportado.setDataColeta(LocalDate.parse (data[6]));
+			csvImportado.setDataColeta(LocalDate.parse (data[6],formatter));
 		}
 	}
 
 	private void converteValorVenda(String[] data, HistoricoPrecoCombustivel csvImportado) {
 		if(!data[7].isEmpty() && data[7] != null) {
-			csvImportado.setValorVenda(Double.parseDouble(data[7]));
+			csvImportado.setValorVenda(Double.parseDouble(data[7].replace(",",".")));
 		}
 	}
 
 	private void converteValorCompra(String[] data, HistoricoPrecoCombustivel csvImportado) {
 		if(!data[8].isEmpty() && data[8] != null) {
-			csvImportado.setValorCompra(Double.parseDouble(data[8]));
+			csvImportado.setValorCompra(Double.parseDouble(data[8].replace(",",".")));
 		}
 	}
 
