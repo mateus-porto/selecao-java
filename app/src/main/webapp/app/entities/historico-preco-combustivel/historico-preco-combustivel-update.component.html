@@ -1,0 +1,104 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-historico-preco-combustivel-heading" jhiTranslate="appApp.historicoPrecoCombustivel.home.createOrEditLabel">Create or edit a Historico Preco Combustivel</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.regiaoSigla" for="field_regiaoSigla">Regiao Sigla</label>
+                    <input type="text" class="form-control" name="regiaoSigla" id="field_regiaoSigla"
+                           formControlName="regiaoSigla"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.estadoSigla" for="field_estadoSigla">Estado Sigla</label>
+                    <input type="text" class="form-control" name="estadoSigla" id="field_estadoSigla"
+                           formControlName="estadoSigla"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.municipio" for="field_municipio">Municipio</label>
+                    <input type="text" class="form-control" name="municipio" id="field_municipio"
+                           formControlName="municipio"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.revenda" for="field_revenda">Revenda</label>
+                    <input type="text" class="form-control" name="revenda" id="field_revenda"
+                           formControlName="revenda"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.cnpj" for="field_cnpj">Cnpj</label>
+                    <input type="text" class="form-control" name="cnpj" id="field_cnpj"
+                           formControlName="cnpj"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.produto" for="field_produto">Produto</label>
+                    <input type="text" class="form-control" name="produto" id="field_produto"
+                           formControlName="produto"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.dataColeta" for="field_dataColeta">Data Coleta</label>
+                    <div class="input-group">
+                        <input id="field_dataColeta" type="text" class="form-control" name="dataColeta" ngbDatepicker #dataColetaDp="ngbDatepicker" formControlName="dataColeta"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataColetaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.valorVenda" for="field_valorVenda">Valor Venda</label>
+                    <input type="number" class="form-control" name="valorVenda" id="field_valorVenda"
+                           formControlName="valorVenda"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.valorCompra" for="field_valorCompra">Valor Compra</label>
+                    <input type="number" class="form-control" name="valorCompra" id="field_valorCompra"
+                           formControlName="valorCompra"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.unidade" for="field_unidade">Unidade</label>
+                    <input type="text" class="form-control" name="unidade" id="field_unidade"
+                           formControlName="unidade"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.bandeira" for="field_bandeira">Bandeira</label>
+                    <input type="text" class="form-control" name="bandeira" id="field_bandeira"
+                           formControlName="bandeira"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="appApp.historicoPrecoCombustivel.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="userId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

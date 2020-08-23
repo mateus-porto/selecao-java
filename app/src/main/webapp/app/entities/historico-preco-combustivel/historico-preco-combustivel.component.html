@@ -1,0 +1,95 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="appApp.historicoPrecoCombustivel.home.title">Historico Preco Combustivels</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-historico-preco-combustivel" [routerLink]="['/historico-preco-combustivel/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="appApp.historicoPrecoCombustivel.home.createLabel">
+            Create a new Historico Preco Combustivel
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="historicoPrecoCombustivels?.length === 0">
+        <span jhiTranslate="appApp.historicoPrecoCombustivel.home.notFound">No historicoPrecoCombustivels found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="historicoPrecoCombustivels && historicoPrecoCombustivels.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="regiaoSigla"><span jhiTranslate="appApp.historicoPrecoCombustivel.regiaoSigla">Regiao Sigla</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="estadoSigla"><span jhiTranslate="appApp.historicoPrecoCombustivel.estadoSigla">Estado Sigla</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="municipio"><span jhiTranslate="appApp.historicoPrecoCombustivel.municipio">Municipio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="revenda"><span jhiTranslate="appApp.historicoPrecoCombustivel.revenda">Revenda</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cnpj"><span jhiTranslate="appApp.historicoPrecoCombustivel.cnpj">Cnpj</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="produto"><span jhiTranslate="appApp.historicoPrecoCombustivel.produto">Produto</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dataColeta"><span jhiTranslate="appApp.historicoPrecoCombustivel.dataColeta">Data Coleta</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="valorVenda"><span jhiTranslate="appApp.historicoPrecoCombustivel.valorVenda">Valor Venda</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="valorCompra"><span jhiTranslate="appApp.historicoPrecoCombustivel.valorCompra">Valor Compra</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="unidade"><span jhiTranslate="appApp.historicoPrecoCombustivel.unidade">Unidade</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="bandeira"><span jhiTranslate="appApp.historicoPrecoCombustivel.bandeira">Bandeira</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userLogin"><span jhiTranslate="appApp.historicoPrecoCombustivel.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let historicoPrecoCombustivel of historicoPrecoCombustivels ;trackBy: trackId">
+                    <td><a [routerLink]="['/historico-preco-combustivel', historicoPrecoCombustivel.id, 'view']">{{ historicoPrecoCombustivel.id }}</a></td>
+                    <td>{{ historicoPrecoCombustivel.regiaoSigla }}</td>
+                    <td>{{ historicoPrecoCombustivel.estadoSigla }}</td>
+                    <td>{{ historicoPrecoCombustivel.municipio }}</td>
+                    <td>{{ historicoPrecoCombustivel.revenda }}</td>
+                    <td>{{ historicoPrecoCombustivel.cnpj }}</td>
+                    <td>{{ historicoPrecoCombustivel.produto }}</td>
+                    <td>{{ historicoPrecoCombustivel.dataColeta | date:'mediumDate' }}</td>
+                    <td>{{ historicoPrecoCombustivel.valorVenda }}</td>
+                    <td>{{ historicoPrecoCombustivel.valorCompra }}</td>
+                    <td>{{ historicoPrecoCombustivel.unidade }}</td>
+                    <td>{{ historicoPrecoCombustivel.bandeira }}</td>
+                    <td>
+                        {{ historicoPrecoCombustivel.userLogin }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/historico-preco-combustivel', historicoPrecoCombustivel.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/historico-preco-combustivel', historicoPrecoCombustivel.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(historicoPrecoCombustivel)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="historicoPrecoCombustivels && historicoPrecoCombustivels.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+{
+  "appApp": {
+    "historicoPrecoCombustivel": {
+      "home": {
+        "title": "Historico Preco Combustivels",
+        "createLabel": "Create a new Historico Preco Combustivel",
+        "createOrEditLabel": "Create or edit a Historico Preco Combustivel",
+        "notFound": "No Historico Preco Combustivels found"
+      },
+      "created": "A new Historico Preco Combustivel is created with identifier {{ param }}",
+      "updated": "A Historico Preco Combustivel is updated with identifier {{ param }}",
+      "deleted": "A Historico Preco Combustivel is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Historico Preco Combustivel {{ id }}?"
+      },
+      "detail": {
+        "title": "Historico Preco Combustivel"
+      },
+      "regiaoSigla": "Regiao Sigla",
+      "estadoSigla": "Estado Sigla",
+      "municipio": "Municipio",
+      "revenda": "Revenda",
+      "cnpj": "Cnpj",
+      "produto": "Produto",
+      "dataColeta": "Data Coleta",
+      "valorVenda": "Valor Venda",
+      "valorCompra": "Valor Compra",
+      "unidade": "Unidade",
+      "bandeira": "Bandeira",
+      "user": "User"
+    }
+  }
+}

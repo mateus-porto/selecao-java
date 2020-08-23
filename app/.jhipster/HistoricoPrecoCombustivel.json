@@ -1,0 +1,71 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "user",
+      "otherEntityName": "user",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "login",
+      "ownerSide": true,
+      "otherEntityRelationshipName": "historicoPrecoCombustivel"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "regiaoSigla",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "estadoSigla",
+      "fieldType": "String",
+      "fieldValidateRules": []
+    },
+    {
+      "fieldName": "municipio",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "revenda",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cnpj",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "produto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dataColeta",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "valorVenda",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "valorCompra",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "unidade",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "bandeira",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20200820235429",
+  "dto": "mapstruct",
+  "searchEngine": false,
+  "service": "serviceClass",
+  "entityTableName": "historico_preco_combustivel",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "pagination"
+}

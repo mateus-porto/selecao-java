@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="historicoPrecoCombustivel">
+            <h2><span jhiTranslate="appApp.historicoPrecoCombustivel.detail.title">Historico Preco Combustivel</span> {{ historicoPrecoCombustivel.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.regiaoSigla">Regiao Sigla</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.regiaoSigla }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.estadoSigla">Estado Sigla</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.estadoSigla }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.municipio">Municipio</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.municipio }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.revenda">Revenda</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.revenda }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.cnpj">Cnpj</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.cnpj }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.produto">Produto</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.produto }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.dataColeta">Data Coleta</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.dataColeta }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.valorVenda">Valor Venda</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.valorVenda }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.valorCompra">Valor Compra</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.valorCompra }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.unidade">Unidade</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.unidade }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.bandeira">Bandeira</span></dt>
+                <dd>
+                    <span>{{ historicoPrecoCombustivel.bandeira }}</span>
+                </dd>
+                <dt><span jhiTranslate="appApp.historicoPrecoCombustivel.user">User</span></dt>
+                <dd>
+                    {{ historicoPrecoCombustivel.userLogin }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/historico-preco-combustivel', historicoPrecoCombustivel.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
